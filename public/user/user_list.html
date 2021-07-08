@@ -1,10 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Insert title here</title>
 </head>
 <body>
+<h2>Spring MVC CRUD Case 1 : single business object, return type:
+    response entity -> json</h2>
+<br>
+<div>
+    <h2>Users</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Membership</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody id="tbody_userlist">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>
+    <a href="/user/signup">Add a new user</a>
+</p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!--<script type="text/javascript" src="/static/js/user/user-list.js"></script>-->
+<script>
+function loadUserList(){
+    console.log("entering loadUserList()");
 
+    $.ajax({
+        method:"GET",
+        url: "http://localhost:8080/users",
+        statusCode: {
+            404: function() {
+                console.log( "page not found" );
+            },
+            500: function () {
+                console.log("internal error")
+            }
+        }
+    }).done(function(data) {
+        console.log("user list:" + data);
+        data.forEach(user => {
+            $("#tbody_userlist").append("<tr>"
+                + "<td>" + user.userId + "</td>"
+                + "<td>" + user.name + "</td>"
+                + "<td>" + user.age + "</td>"
+                + "<td>" + user.membership + "</td>"
+                + "<td><a href='javascript:void(0)' id='editUserButton_" + user.userId + "'>Edit</a></td>"
+                + "<td><a href='javascript:void(0)' id='deleteUserButton_" + user.userId + "'>Edit</a></td>"
+                + "tr>");
+            $("#editUserButton_" + user.userId).click(function (){
+                showEditUserForm(user.userId);
+            });
+            $("#deleteUserButton_" + user.userId).click(function (){
+                showDeleteUserForm(user.userId);
+            });
+
+        })
+
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+       alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+
+    }).always(function(){
+        console.log("complete")
+    });
+}
+
+function showEditUserForm(userId){
+    alert("entering showEditUserForm() userId:" + userId);
+    window.sessionStorage.setItem("userId", userId);
+    window.location.href = "http://localhost:63342/prototype_springboot_frontend/public/user/user_edit.html"
+}
+
+function showDeleteUserForm(userId){
+    alert("entering showDeleteUserForm() userId:" + userId);
+    window.sessionStorage.setItem("userId", userId);
+    window.location.href = "http://localhost:63342/prototype_springboot_frontend/public/user/user_delete.html"
+}
+
+loadUserList();
+</script>
 </body>
 </html>
