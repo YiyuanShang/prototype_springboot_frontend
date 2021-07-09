@@ -62,7 +62,7 @@ function loadUserList(){
                 + "<td>" + user.age + "</td>"
                 + "<td>" + user.membership + "</td>"
                 + "<td><a href='javascript:void(0)' id='editUserButton_" + user.userId + "'>Edit</a></td>"
-                + "<td><a href='javascript:void(0)' id='deleteUserButton_" + user.userId + "'>Edit</a></td>"
+                + "<td><a href='javascript:void(0)' id='deleteUserButton_" + user.userId + "'>Delete</a></td>"
                 + "tr>");
             $("#editUserButton_" + user.userId).click(function (){
                 showEditUserForm(user.userId);
