@@ -7,22 +7,22 @@
 <body>
 <form>
     <label for="userId">User Id</label>
-    <input type="number" id="userId" value=""><br>
+    <input type="number" id="userId" value="" readonly><br>
 
     <label for="name">Name</label>
-    <input type="text" id="name" value=""><br>
+    <input type="text" id="name" value="" readonly><br>
 
     <label for="age">Age</label>
-    <input type="number" id="age" value=""><br>
+    <input type="number" id="age" value="" readonly><br>
 
     <label for="membership">Membership</label>
     <input type="radio" name="membership" value="true">yes
     <input type="radio" name="membership" value="false">no <br>
 
-    <input type="submit" value="Update User" onclick="return updateUser()">
+    <input type="submit" value="Delete User" onclick="deleteUser()">
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/user/user-edit.js"></script>
+<script type="text/javascript" src="/static/js/user/user-delete.js"></script>
 <script>
     loadUserInfo();
 </script>
