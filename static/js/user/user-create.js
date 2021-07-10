@@ -36,10 +36,16 @@ function addUser(){
             }
         }
     }).done(function (data){
-        console.log("returned data:" + data);
+        console.log("returned data:" + Object.entries(data));
+        alert("Create succeeded!");
+        setTimeout(function(){
+            alert("Backing to user list");
+            window.location.href = API_SERVER_ADDR + "/public/user/user_list.html"; }, 2000);
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        // get custom error message from response text
+        alert(jqXHR.responseText + "! Create failed!");
     }).always(function(){
-        console.log("create complete")
+        console.log("Create complete")
     });
 }

@@ -9,7 +9,7 @@ function loadUserInfo(){
         url: API_SERVER_ADDR + "/users/" + userId,
         statusCode: {
             404: function() {
-                console.log( "page not found" );
+                console.log( "page not found");
             },
             500: function () {
                 console.log("internal error")
@@ -23,7 +23,7 @@ function loadUserInfo(){
         $("input[name='membership'][value='" + data.membership + "']").attr("checked", true);
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
     }).always(function(){
         console.log("complete")
     });
@@ -58,9 +58,11 @@ function updateUser(){
             200: function (){
                 alert("Update succeeded!");
                 window.sessionStorage.removeItem("userId");
-                setTimeout(function(){
-                    window.location.href = API_SERVER_ADDR + "/public/user/user_list.html";
-                    return false;}, 2000);
+                window.location.replace(API_SERVER_ADDR + "/public/user/user_list.html");
+                // setTimeout(function(){
+                //    // window.location.href = API_SERVER_ADDR + "/public/user/user_list.html";
+                //     window.location.replace(API_SERVER_ADDR + "/public/user/user_list.html");
+                //     return false;}, 2000);
             },
             404: function() {
                 console.log( "page not found" );
@@ -70,9 +72,11 @@ function updateUser(){
             }
         }
     }).done(function(data) {
-        console.log("returned data:" + data);
+        console.log("returned data:" + Object.entries(data));
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        // get custom error message from response text
+        alert(jqXHR.responseText + "! Update failed!");
     }).always(function(){
         console.log("update complete");
     });

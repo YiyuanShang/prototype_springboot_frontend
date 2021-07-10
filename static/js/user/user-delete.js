@@ -70,10 +70,17 @@ function deleteUser(){
             }
         }
     }).done(function(data) {
-        console.log("returned data:" + data);
+        console.log("returned data:" + Object.entries(data));
+        alert("Delete succeeded!");
+        window.sessionStorage.removeItem("userId");
+        setTimeout(function(){
+            window.location.href = API_SERVER_ADDR + "/public/user/user_list.html";
+            return false;}, 2000);
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        // get custom error message from response text
+        alert(jqXHR.responseText + "! Delete failed!");
     }).always(function(){
-        console.log("update complete");
+        console.log("Delete complete");
     });
 }

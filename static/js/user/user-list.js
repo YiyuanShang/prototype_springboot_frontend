@@ -5,14 +5,14 @@ function loadUserList(){
     $.ajax({
         method:"GET",
         url: API_SERVER_ADDR + "/users",
-        statusCode: {
-            404: function() {
-                console.log( "page not found" );
-            },
-            500: function () {
-                console.log("internal error")
-            }
-        }
+        // statusCode: {
+        //     404: function() {
+        //         console.log( "page not found" );
+        //     },
+        //     500: function () {
+        //         console.log("internal error")
+        //     }
+        // }
     }).done(function(data) {
         console.log("user list:" + data);
         data.forEach(user => {
