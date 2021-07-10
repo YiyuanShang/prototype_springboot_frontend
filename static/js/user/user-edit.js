@@ -23,7 +23,7 @@ function loadUserInfo(){
         $("input[name='membership'][value='" + data.membership + "']").attr("checked", true);
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
     }).always(function(){
         console.log("complete")
     });
@@ -72,7 +72,8 @@ function updateUser(){
     }).done(function(data) {
         console.log("returned data:" + data);
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        alert("Update failed!");
     }).always(function(){
         console.log("update complete");
     });

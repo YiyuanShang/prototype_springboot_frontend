@@ -34,7 +34,7 @@ function loadUserList(){
         })
 
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
 
     }).always(function(){
         console.log("complete")

@@ -38,8 +38,9 @@ function addUser(){
     }).done(function (data){
         console.log("returned data:" + data);
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        console.log("textStatus:" + textStatus + " errorThrown:" + errorThrown);
+        alert("Create failed!");
     }).always(function(){
-        console.log("create complete")
+        console.log("Create complete")
     });
 }
