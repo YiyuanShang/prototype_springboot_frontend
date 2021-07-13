@@ -6,5 +6,10 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
-# Idea files
+
+# Idea
 /.idea
+
+# Eclipse
+.project
+
